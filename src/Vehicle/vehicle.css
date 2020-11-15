@@ -1,0 +1,13 @@
+.car
+{
+    display-inline : block;
+    margin: 10px;
+    border: 1px solid #aaaaaa;
+    box-shadow:0 2px 2px #cccccc;
+    padding: 0 20px 10px 20px;
+    height:175px;
+    background-color:#f7e2d7;
+    width:350px;
+
+
+}
