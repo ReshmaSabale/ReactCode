@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+background-color: #f8e4b7;
+  color: #a20a0a;
+  padding: 20px;
 }
 
 .App-logo {
@@ -35,4 +37,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.buttonDiv{
+  text-align: right;
+  margin-left: 20px;
+}
+.buttonUpdate{
+  margin:0 20px 0 0;
+  width:250px;
 }
