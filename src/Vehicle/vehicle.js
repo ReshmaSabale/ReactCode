@@ -7,9 +7,11 @@ const vehicle=props =>
             vehicle:{props.vehicleType}
         </h1>
 
-        <p> Name: {props.Name}</p>
+        <p onClick={props.updateClick}> Name: {props.Name}</p>
         <p> Manufacturer: {props.Manufacturer}</p>
         <p> Fuel: {props.FuelType}</p>
+
+        <input type="text" onChange={props.nameChanged} value={props.Name}></input>    {/*dual binding*/}
       
     </div>
 );
