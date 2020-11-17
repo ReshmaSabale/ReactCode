@@ -10,8 +10,8 @@ const vehicle=props =>
         <p onClick={props.updateClick}> Name: {props.Name}</p>
         <p> Manufacturer: {props.Manufacturer}</p>
         <p> Fuel: {props.FuelType}</p>
-
-        <input type="text" onChange={props.nameChanged} value={props.Name}></input>    {/*dual binding*/}
+        <button className="btn btn-danger btn-sm" onClick={props.onDelete}> Delete </button>
+      {/*} <input type="text" onChange={props.nameChanged} value={props.Name}></input> --> */}  {/*dual binding*/}
       
     </div>
 );
