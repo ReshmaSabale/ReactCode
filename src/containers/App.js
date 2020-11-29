@@ -29,7 +29,7 @@ constructor (props){
 
       console.log("Component : App | Method : constructor");
 }
-  
+      //Mounting
       static getDerivedStateFromProps(props,state)
       {
         console.log("Component : App | Method : getDerivedStateFromProps");
@@ -41,8 +41,20 @@ constructor (props){
         console.log("Component : App | Method : componentDidMount");
       }
 
+      //updating
+      shouldComponentUpdate(nextProps,nextState){
+        console.log("Component: App | Method: shouldComponentUpdate");
+        return true;
+      }
 
+      getSnapshotBeforeUpdate(prevProps,prevState){
+        console.log("Component: App | Method: getSnapshotBeforeUpdate");
+        return null;
+      }
 
+      componentDidUpdate(){
+        console.log("Component: App | Method: componentDidUpdate");
+      }
 
       addVehicleHandler = () => {
    
