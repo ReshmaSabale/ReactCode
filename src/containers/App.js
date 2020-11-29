@@ -1,11 +1,14 @@
 import './App.css';
-import Vehicle from '../components/Vehicles/Vehicle/vehicle'
-import { useState } from 'react';
+import { Component } from 'react';
 import Vehicles from '../components/Vehicles/Vehicles';
-import vehicles from '../components/Vehicles/Vehicles';
 
-const App=props=>{
-  const [vehicleState,setVehicleState] = useState(
+
+class App extends Component {
+
+constructor (props){
+  super(props);
+
+  this.state=
     {
     
         vehicles:[
@@ -17,43 +20,60 @@ const App=props=>{
           {Id:"6", vehicleType:"Car", Name:"City", Manufacturer:"Honda", FuelType:"Petrol"}
   
         ],
+        
         count:6,
         showVehicles : true,
         showVehiclesLabel : "Hide Vehicles",
-      }
-  );
+      
+      };
 
-    const addVehicleHandler = () => {
+      console.log("Component : App | Method : constructor");
+}
+  
+      static getDerivedStateFromProps(props,state)
+      {
+        console.log("Component : App | Method : getDerivedStateFromProps");
+        return state;
+      }
+
+      componentDidMount()
+      {
+        console.log("Component : App | Method : componentDidMount");
+      }
+
+
+
+
+      addVehicleHandler = () => {
    
-      const vehicleList=[...vehicleState.vehicles];
+      const vehicleList=[...this.state.vehicles];
       const newVehicle={vehicleType:"Car", Name:"Kwid", Manufacturer:"Renault", FuelType:"Petrol"}
       vehicleList.push(newVehicle);
 
-        setVehicleState({
+        this.setState({
               vehicles: vehicleList,
                        
-              count:vehicleState.count +1,
-              showVehicles : vehicleState.showVehicles,
-              showVehiclesLabel : vehicleState.showVehiclesLabel
+              count:this.state.count +1,
+              showVehicles : this.state.showVehicles,
+              showVehiclesLabel : this.state.showVehiclesLabel
             });
           }
-
-          const deleteVehicleHandler = (vehicleIndex) => {
-            const vehicleList = [...vehicleState.vehicles];
+      deleteVehicleHandler = (vehicleIndex) => {
+            const vehicleList = [...this.state.vehicles];
             vehicleList.splice(vehicleIndex,1);
-            setVehicleState({
+            this.setState({
               vehicles: vehicleList,
                        
-              count:vehicleState.count -1,
-              showVehicles : vehicleState.showVehicles,
-              showVehiclesLabel : vehicleState.showVehiclesLabel
+              count:this.state.count -1,
+              showVehicles : this.state.showVehicles,
+              showVehiclesLabel : this.state.showVehiclesLabel
             });
           }
 
           
         
-        const toggleVehicleListHandler=()=>{
-          let toggleVehicle= ! vehicleState.showVehicles;
+      toggleVehicleListHandler=()=>{
+          let toggleVehicle= ! this.state.showVehicles;
           let label="";
           if(toggleVehicle){
             label="Hide Vehicles";
@@ -62,53 +82,52 @@ const App=props=>{
             label="Show Vehicles";
           }
          
-            setVehicleState({
-             vehicles:vehicleState.vehicles,
-              count:vehicleState.count,
+          this.setState({
+             vehicles:this.state.vehicles,
+              count:this.state.count,
               showVehicles : toggleVehicle,
               showVehiclesLabel : label
             });
           }
          
-               
-        let vehicleList=null;
-        if(vehicleState.showVehicles) {
-      
-        vehicleList = ( <div className="row">
-          {
-
-            <Vehicles 
-              vehicles = {vehicleState.vehicles}
-              onDelete = {deleteVehicleHandler}
-              
-              />
-
-            
-             
-          }
-          </div>
+          render(){
+            console.log("Component : App| Method : App component is loading..");
+            let vehicleList=null;
+            if(this.state.showVehicles) {
+              vehicleList = ( <div className="row">
+              {
+                <Vehicles 
+                  vehicles = {this.state.vehicles}
+                  onDelete = {this.deleteVehicleHandler}
+                />
+                    
+              }
+            </div>
           );
         }
+              
+       return (
         
-      
-    return(
-    
-      <div className="App container-fluid">
-        <div className="row"> 
-        <div className="col-lg-6">
-          <h1> Vehicles List | Total Vehicles:{vehicleState.count} </h1>
-        </div>
+          <div className="App container-fluid">
+            <div className="row"> 
+            <div className="col-lg-6">
+              <h1> Vehicles List | Total Vehicles:{this.state.count} </h1>
+            </div>
+              
+              <div className="col-lg-6 divButton">
+              <button className="btn btn-primary btn-lg buttonUpdate" onClick={this.addVehicleHandler}> Add Vehicle </button>
+              <button className="btn btn-secondary btn-lg buttonUpdate" onClick={this.toggleVehicleListHandler}> {this.state.showVehiclesLabel} </button>
+            </div>
+            </div>
+            
+          { vehicleList }
           
-          <div className="col-lg-6 divButton">
-          <button className="btn btn-primary btn-lg buttonUpdate" onClick={addVehicleHandler}> Add Vehicle </button>
-          <button className="btn btn-secondary btn-lg buttonUpdate" onClick={toggleVehicleListHandler}> {vehicleState.showVehiclesLabel} </button>
-        </div>
-        </div>
+          </div>
+         );
         
-      { vehicleList}
-      </div>
-     );
-    
+       };
     }
+        
+  
   
 export default App;

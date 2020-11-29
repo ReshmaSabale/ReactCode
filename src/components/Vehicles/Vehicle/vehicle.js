@@ -1,8 +1,10 @@
 import './vehicle.css'
 
-const vehicle=props =>
-(
+const vehicle = (props)  =>{  
+    console.log("Component : Vehicle | Method : Vehicle component is loading..");
+    return (
     <div className="vehicle col-lg-3">
+       
         <h1>
             vehicle:{props.vehicleType}
         </h1>
@@ -13,7 +15,7 @@ const vehicle=props =>
         <button className="btn btn-danger btn-sm" onClick={props.onDelete}> Delete </button>
       {/*} <input type="text" onChange={props.nameChanged} value={props.Name}></input> --> */}  {/*dual binding*/}
       
-    </div>
-);
+    </div> )
+};
 
 export default vehicle;
