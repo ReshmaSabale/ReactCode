@@ -1,7 +1,8 @@
 import './App.css';
-import Vehicle from './Vehicle/vehicle'
+import Vehicle from '../components/Vehicles/Vehicle/vehicle'
 import { useState } from 'react';
-
+import Vehicles from '../components/Vehicles/Vehicles';
+import vehicles from '../components/Vehicles/Vehicles';
 
 const App=props=>{
   const [vehicleState,setVehicleState] = useState(
@@ -75,16 +76,15 @@ const App=props=>{
       
         vehicleList = ( <div className="row">
           {
-            vehicleState.vehicles.map((vehicleItem,index) => {
-              return  <Vehicle key={vehicleItem.Id}
-            vehicleType={vehicleItem.vehicleType} 
-            Name={vehicleItem.Name} 
-            Manufacturer={vehicleItem.Manufacturer} 
-            FuelType={vehicleItem.FuelType}
-            onDelete={deleteVehicleHandler.bind(this,index)}
-             />
-           
-            })
+
+            <Vehicles 
+              vehicles = {vehicleState.vehicles}
+              onDelete = {deleteVehicleHandler}
+              
+              />
+
+            
+             
           }
           </div>
           );
@@ -100,7 +100,7 @@ const App=props=>{
         </div>
           
           <div className="col-lg-6 divButton">
-          <button className="btn btn-primary btn-lg buttonUpdate" onClick={addVehicleHandler}> Update List </button>
+          <button className="btn btn-primary btn-lg buttonUpdate" onClick={addVehicleHandler}> Add Vehicle </button>
           <button className="btn btn-secondary btn-lg buttonUpdate" onClick={toggleVehicleListHandler}> {vehicleState.showVehiclesLabel} </button>
         </div>
         </div>
